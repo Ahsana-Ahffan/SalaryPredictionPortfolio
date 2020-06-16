@@ -1,16 +1,20 @@
-
+# Salary Prediction Project(Python)
 
 ## Introduction:
 
-   The goal of this project is to predict the salary of a new job posting with the help of job details like education,experience, seniority etc. The model is then later tested on a test data set to validate the accuracy of the model. 
+The goal of this project is to predict the salary of a new job posting with the help of job details like education,experience, seniority etc. The model is then later tested on a test data set to validate the accuracy of the model. 
 
 The three datasets used for this project are train , test  and train salaries. The model is trained using train  dataset which has the features jobid, companyid,  jobtype, major, degree,  industry and the train salaries dataset which has the features jobid and the target variable salary.
 
 The tool used is Python 3 along with its libraries and packages such as numpy, pandas, matplotlib, seaborn and sklearn to do data manipulation, data visualization and building the predictive model
 
+## Data Cleaning:
+
+The data was checked for duplicates. There were five entries with salary <= 0. So a new dataframe was defined with salaries greater than 0.
+
 ## Exploratory Data Analysis(EDA):
 
-Numerical and categorical varibles were identified and summarized separately. There are two numeral features - yearsExperience and milesFromMetropolis. The feature jobId is unique for all entry and it is not used to buld the model. The other categorical features are companyId with 63 unique values, jobType with 8 unique values, degree, major and industry with 5,9,7 unique values respectively.
+Numerical and categorical varibles were identified and summarized separately. There are two numerical features - yearsExperience and milesFromMetropolis. The feature jobId is unique for all entry and it was not used to build the model. The other categorical features are companyId with 63 unique values, jobType with 8 unique values, degree, major and industry with 5,9,7 unique values respectively.
 
 ### Visualizing Target Variable
 
@@ -28,13 +32,13 @@ Each feature was plotted against the mean salary(target).
 From the plots we can see that
 1. Job type has a strong positve correlation with salary. That is senior job types has highest salary
 2. Having advanced degree helps the job seeker to get higher salary
-3. Those with Engineering, Business, Math and Computerscience majors are paid higher
+3. Those with Engineering, Business, Math and ComputerScience majors are paid higher
 4. Oil and finance are the highest paying industries.
-5. The feature companyId has no correlation with the target,salary
-6. Those with more years of experience and paid higher
+5. The feature companyId has no correlation with the target
+6. Those with more years of experience are paid higher
 7. As the distance from metropolis decreases, salary increases
 
-Apart from this to get an idea about the correlation between features, a heatmap was plotted and it showed that jobtype as the most strongly correlated feature with salary. Also Degree and Major have the strongest positive relationship.
+Apart from this to get an idea about the correlation between features, a heatmap was plotted and it showed  jobtype as the most strongly correlated feature with salary. Also Degree and Major have the strongest positive relationship.
 
 ![myimage-alt-tag](https://github.com/Ahsana-Ahffan/salarypredictionportfolio/blob/master/Images/Correlation%20plot.png)
 
@@ -55,15 +59,19 @@ Mean Squared Error(MSE) is selected as the evaluation metric. The model with low
 ### Best Model
 After doing 5 fold cross validation on each selected models, the following MSE was measured for corresponding models
 
-1.Linear Regression                              -     384.46814580352583 
-2 StandardScaler,PCA, Linear Regression Pipeline -     384.4675895960695
-3.Random Forest Regression                       -     369.0068823587397
-4.Gradient Boosting Regressor                    -     356.8304819975119
+1.Linear Regression                              -     384.46814580352583 <br />
+2 StandardScaler,PCA, Linear Regression Pipeline -     384.4675895960695 <br />
+3.Random Forest Regression                       -     369.0068823587397 <br />
+4.Gradient Boosting Regressor                    -     356.8304819975119   <br />
 
 So Gradient Boosting Regressor with the lowest MSE was selected as the best model. The model was trained on the entire data set and prdeictions were created based on the test data.
 Key predictors for this model are yearExperience and milesFrom Metropolis as shown in the Feature Importances plot.
 
 ![myimage-alt-tag](https://github.com/Ahsana-Ahffan/salarypredictionportfolio/blob/master/Images/Feature%20imp%20plot.png)
+
+## Conclusion:
+
+The Predictive model is working fine and is able to predict salaries for the test dataset. The evaluation metric considered was MSE(Mean Squared Error). THe MSE obtained for the model is 353.8863 .There is scope for improvement on the model if advanced feature engineering and stacking/ensembling methods are used.
 
 
 
